@@ -1,0 +1,19 @@
+wordpress:
+  # image: wordpress
+  build: images/www
+  # command: php -S 0.0.0.0:8000 -t /wordpress
+  links:
+    - db:mysql
+  volumes:
+    - /Users/emreplt/emlak/wp-www:/var/www/html
+  ports:
+    - 8080:80
+    - 9000:9000
+db:
+  # image: mysql
+  build: images/db
+  volumes:
+    - /Users/emreplt/emlak/wp-data:/var/lib/mysql
+  environment:
+    MYSQL_DATABASE: wordpress
+    MYSQL_ROOT_PASSWORD: wordpress
